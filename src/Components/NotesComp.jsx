@@ -9,6 +9,7 @@ import { useAuth } from '../Context/auth';
 const NotesComp = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  // eslint-disable-next-line
   const [notes, setNotes] = useState([]);
   const [dependency, setDependency] = useState(0)
   // eslint-disable-next-line
@@ -42,12 +43,12 @@ const NotesComp = () => {
 
 
   useEffect(() => {
-    axios.get('https://note-mern-backend.onrender.com/get/notes')
-      .then((res) => setNotes(res.data))
-      .catch((err) => console.log(err));
+    // axios.get('https://note-mern-backend.onrender.com/get/notes')
+    //   .then((res) => setNotes(res.data))
+    //   .catch((err) => console.log(err));
 
     // console.log(notes);
-    // console.log('useEffect runs')
+    console.log('useEffect runs')
   },[dependency])
 
   const handleLogout = () => {
