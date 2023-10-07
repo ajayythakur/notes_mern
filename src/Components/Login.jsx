@@ -10,29 +10,37 @@ import {
     from 'mdb-react-ui-kit';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../Context/auth';
 
 
 const Login = () => {
-    const [email,setEmail] = useState('');
-    const [password,setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [auth, setAuth] = useAuth()
 
     const navigate = useNavigate();
 
-    const signInHandler = async(e) => {
+
+    const signInHandler = async (e) => {
         e.preventDefault();
 
-        const details = await axios.post('http://localhost:8080/login',{
-            email,password
+        const details = await axios.post('http://localhost:8080/login', {
+            email, password
         });
 
-        if(!details){
+        if (!details) {
             alert("Invalid Credientials");
         }
-        else{
-            console.log('Login Success');
+        else {
+            setAuth({
+                ...auth,
+                email: details.data.email,
+                token: details.data.token
+            })
+            console.log(auth.token);
+            localStorage.setItem('auth', JSON.stringify(details.data));
             alert("Login Successfully");
             navigate('/get/notes');
-
         }
     }
 
@@ -53,8 +61,8 @@ const Login = () => {
                         <p>Please login to your account</p>
 
 
-                        <MDBInput wrapperClass='mb-4' label='Email address' id='form1' type='email'  value={email} onChange={(e)=>setEmail(e.target.value)}/>
-                        <MDBInput wrapperClass='mb-4' label='Password' id='form2' type='password' value={password} onChange={(e=> setPassword(e.target.value))}/>
+                        <MDBInput wrapperClass='mb-4' label='Email address' id='form1' type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <MDBInput wrapperClass='mb-4' label='Password' id='form2' type='password' value={password} onChange={(e => setPassword(e.target.value))} />
 
 
                         <div className="text-center pt-1 mb-5 pb-1">
