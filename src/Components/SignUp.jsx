@@ -37,7 +37,7 @@ const SignUp = () => {
     if (contact.length < 10) {
       return alert("Please enter valid contact no.")
     }
-    const details = await axios.post('http://localhost:8080/register', {
+    const details = await axios.post('https://note-mern-backend.onrender.com/register', {
       name, email, password, contact
     })
     if (details) {

@@ -20,7 +20,7 @@ const NotesComp = () => {
   console.log(author)
 
   const submit = async () => {
-    const noteData = await axios.post('http://localhost:8080/note', {
+    const noteData = await axios.post('https://note-mern-backend.onrender.com/note', {
       title, description, author
     })
     if (noteData) {
@@ -31,7 +31,7 @@ const NotesComp = () => {
 
   const deleteNote = (id) => {
     const noteId = id;
-    const deleteNote = axios.patch(`http://localhost:8080/delete/${noteId}`);
+    const deleteNote = axios.patch(`https://note-mern-backend.onrender.com/delete/${noteId}`);
     if (deleteNote) {
       setDependency(dependency - 1);
       return alert(`Note Deleted`);
@@ -42,13 +42,13 @@ const NotesComp = () => {
 
 
   useEffect(() => {
-    axios.get('http://localhost:8080/get/notes')
+    axios.get('https://note-mern-backend.onrender.com/get/notes')
       .then((res) => setNotes(res.data))
       .catch((err) => console.log(err));
 
     // console.log(notes);
     // console.log('useEffect runs')
-  }, [])
+  },[dependency])
 
   const handleLogout = () => {
     setAuth({

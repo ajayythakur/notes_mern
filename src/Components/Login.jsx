@@ -24,7 +24,7 @@ const Login = () => {
     const signInHandler = async (e) => {
         e.preventDefault();
 
-        const details = await axios.post('http://localhost:8080/login', {
+        const details = await axios.post('https://note-mern-backend.onrender.com/login', {
             email, password
         });
 

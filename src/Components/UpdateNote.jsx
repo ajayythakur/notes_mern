@@ -15,7 +15,7 @@ const UpdateNote = () => {
   const submit = async (e) => {
     e.preventDefault();
     console.log(newTitle, newDes);
-    const updateNote = await axios.put(`http://localhost:8080/update/note/${_id}/${newTitle}/${newDes}`);
+    const updateNote = await axios.put(`https://note-mern-backend.onrender.com/update/note/${_id}/${newTitle}/${newDes}`);
     if (updateNote) {
       alert("Node Updated");
       // console.log(updateNote);
