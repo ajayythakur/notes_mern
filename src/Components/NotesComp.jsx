@@ -48,7 +48,7 @@ const NotesComp = () => {
 
     // console.log(notes);
     // console.log('useEffect runs')
-  }, [dependency])
+  }, [])
 
   const handleLogout = () => {
     setAuth({
